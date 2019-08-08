@@ -2,6 +2,7 @@ import React from 'react';
 import AddTodo from './components/AddTodo';
 import './App.css';
 import TodoList from './components/TodoList';
+import FilterButtons from './components/FilterButtons';
 
 class App extends React.Component {
   state = {
@@ -12,6 +13,7 @@ class App extends React.Component {
       // }
       // {},
     ],
+    activeFilter: 'all'
   }
 
   updateNewInput = (inputValue) => {
@@ -42,18 +44,28 @@ class App extends React.Component {
       isCompleted: !currentTodos[index].isCompleted
     }
 
-    console.log('new todos', currentTodos);
     this.setState({
       todos: currentTodos,
     })
   }
+  
+  onClickFilter = (filter) => {
+    this.setState({
+      activeFilter: filter,
+    })
+  }
 
   render() {
-    console.log(this.state.todos);
+    const { todos, activeFilter } = this.state;
     return (
       <div className="App">
         <AddTodo handleInputValue={this.updateNewInput} />
-        <TodoList todoLists={this.state.todos} onClickList={this.onClickList} />
+        <TodoList
+          todoLists={todos}
+          onClickList={this.onClickList}
+          activeFilter={activeFilter}
+        />
+        <FilterButtons onClickFilter={this.onClickFilter} />
       </div>
     );
   }
