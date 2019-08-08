@@ -15,8 +15,6 @@ class TodoList extends React.Component {
     if (activeFilter === COMPLETED) {
       filteredLists = todoLists.filter((todoList) => todoList.isCompleted)
     }    
-
-    console.log(filteredLists);
     
     return(
       <ul>
