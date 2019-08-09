@@ -1,16 +1,16 @@
-import { filterKeys } from '../constants/filterKeys';
-import { GET_TODOS, ADD_TODOS, CLICK_TODO } from '../reducers/todos';
+// import { filterKeys } from '../constants/filterKeys';
+import { GET_TODOS, ADD_TODO, CLICK_TODO } from '../actions/todos';
 
 const initialState = {
   todos: [],
-  activeFilter: filterKeys.ALL
+  // activeFilter: filterKeys.ALL
 }
 
 export default function todos(state = initialState, action) {
   switch(action.type) {
     case GET_TODOS:
       return getTodos(state, action);
-    case ADD_TODOS:
+    case ADD_TODO:
       return addTodos(state, action);
     case CLICK_TODO:
       return clickTodo(state, action);
@@ -20,9 +20,8 @@ export default function todos(state = initialState, action) {
 }
 
 function getTodos(state, action) {
-  return {
-    ...state,
-  }
+  const { todos } = state;
+  return { todos }
 }
 
 function addTodos(state, action) {
@@ -47,8 +46,9 @@ function clickTodo(state, action) {
     isCompleted: !currentTodos[id].isCompleted
   }
 
+  console.log('currentTOdos', currentTodos);
   return {
     ...state,
-    currentTodos,
+    todos: currentTodos,
   }
 }
