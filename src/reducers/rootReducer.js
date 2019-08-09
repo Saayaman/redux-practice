@@ -1,4 +1,7 @@
 
-export default function(){
-  return null;
-};
+import { combineReducers } from 'redux';
+import todos from './todos';
+
+export default combineReducers({
+  todoFile: todos,
+});

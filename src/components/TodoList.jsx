@@ -2,8 +2,13 @@ import React from 'react';
 import { filterKeys } from '../constants/filterKeys';
 
 class TodoList extends React.Component {
+
+  handleClick = (index) => {
+    this.props.onClickList(index)
+    this.forceUpdate();
+  }
   render() {
-    const { todoLists, onClickList, activeFilter } = this.props;
+    const { todoLists, activeFilter } = this.props;
     const { ACTIVE, COMPLETED } = filterKeys;
 
     let filteredLists = todoLists;
@@ -21,7 +26,10 @@ class TodoList extends React.Component {
     return(
       <ul>
         {filteredLists.map((todoList, index) => 
-          <li key={index} style={{ textDecoration: todoList.isCompleted ? 'line-through' : 'unset' }} onClick={() => onClickList(index)}>{todoList.text}</li>
+          <li key={index} style={{ textDecoration: todoList.isCompleted ? 'line-through' : 'unset' }}
+          onClick={() => this.handleClick(index)}>
+            {todoList.text}
+          </li>
         )}
       </ul>
     )

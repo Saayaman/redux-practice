@@ -1,16 +1,14 @@
-import { filterKeys } from '../constants/filterKeys';
-import { GET_TODOS, ADD_TODOS, CLICK_TODO } from '../reducers/todos';
+import { GET_TODOS, CLICK_TODO, ADD_TODO } from '../actions/todos'
 
 const initialState = {
   todos: [],
-  activeFilter: filterKeys.ALL
 }
 
 export default function todos(state = initialState, action) {
   switch(action.type) {
     case GET_TODOS:
       return getTodos(state, action);
-    case ADD_TODOS:
+    case ADD_TODO:
       return addTodos(state, action);
     case CLICK_TODO:
       return clickTodo(state, action);
@@ -49,6 +47,6 @@ function clickTodo(state, action) {
 
   return {
     ...state,
-    currentTodos,
+    todos: currentTodos,
   }
 }

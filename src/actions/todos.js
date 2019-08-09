@@ -1,5 +1,5 @@
 export const GET_TODOS = 'GET_TODOS';
-export const ADD_TODOS = 'ADD_TODOS';
+export const ADD_TODO = 'ADD_TODO';
 export const CLICK_TODO = 'CLICK_TODO';
 
 export function getTodos(payload) {
@@ -15,7 +15,7 @@ export function getTodos(payload) {
 export function addTodo(text) {
   return function(dispatch) {
     dispatch({
-      type: ADD_TODOS,
+      type: ADD_TODO,
       payload: text,
     })
   }
